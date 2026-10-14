@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap');
+
+:root {
+  --ink: #17203A;
+  --paper: #F5F6FA;
+  --card: #FFFFFF;
+  --mark: #FFE14D;
+  --muted: #5B6785;
+  --line: #DCE0EC;
+}
+
+html, body, .stApp, [data-testid="stSidebar"] {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  color: var(--ink);
+}
+.stApp { background: var(--paper); }
+#MainMenu, footer { visibility: hidden; }
+header[data-testid="stHeader"] { background: transparent; }
+.block-container { max-width: 760px; padding-top: 2.5rem; padding-bottom: 6rem; }
+
+/* Wordmark: satu sapuan stabilo di belakang nama */
+.wordmark {
+  display: inline-block;
+  font-weight: 800;
+  font-size: 2.8rem;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  padding: 0 0.12em;
+  background: linear-gradient(transparent 52%, var(--mark) 52%, var(--mark) 90%, transparent 90%);
+}
+.tagline { color: var(--muted); font-size: 1.05rem; margin: 0.6rem 0 0; }
+
+/* Halaman awal */
+.hero { margin: 2.2rem 0 1rem; }
+.hero h2 { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 0.4rem; }
+.hero p { color: var(--muted); max-width: 46ch; margin: 0; }
+.hero .note { font-size: 0.88rem; margin-top: 0.7rem; }
+[data-testid="stFileUploaderDropzone"] {
+  background: var(--card);
+  border: 2px dashed var(--ink);
+  border-radius: 16px;
+  padding: 2.2rem 1.5rem;
+}
+[data-testid="stFileUploaderDropzone"] button {
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  background: var(--mark);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Info dokumen aktif */
+.docbar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--mark);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin: 1.4rem 0 1.6rem;
+}
+.docbar b { font-weight: 600; word-break: break-all; }
+.docbar .meta { color: var(--muted); font-size: 0.92rem; }
+
+/* Chat */
+[data-testid="stChatMessage"] { background: transparent; padding: 0.5rem 0; }
+[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.8rem 1rem;
+  margin-top: 1rem;
+}
+[data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] p,
+[data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] li {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+/* Penanda sitasi [1] [2] */
+.cite {
+  display: inline-block;
+  min-width: 1.4em;
+  text-align: center;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 0.72em;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--mark);
+  border-radius: 4px;
+  padding: 0 0.3em;
+  margin: 0 0.12em;
+  vertical-align: 0.12em;
+}
+
+/* Kartu sumber */
+.src {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  margin: 0.55rem 0;
+}
+.src-h { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; margin-bottom: 0.45rem; }
+.src-t { font-family: 'Source Serif 4', Georgia, serif; font-size: 0.95rem; line-height: 1.8; }
+.hl {
+  background: rgba(255, 225, 77, 0.38);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding: 0.05em 0.12em;
+}
+
+/* Tombol saran pertanyaan */
+.hint { color: var(--muted); margin: 0.2rem 0 0.4rem; }
+.stButton > button {
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink);
+  font-weight: 600;
+  transition: background 0.15s;
+}
+.stButton > button:hover { background: var(--mark); border-color: var(--ink); color: var(--ink); }
+.stButton > button:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+/* Sidebar */
+[data-testid="stSidebar"] { background: var(--card); border-right: 1px solid var(--line); }
+
+/* Sidebar statis di layar lebar: tidak bisa dilipat atau digeser.
+   Di layar sempit tetap perilaku bawaan agar konten tidak tertutup. */
+@media (min-width: 900px) {
+  [data-testid="stSidebarCollapseButton"],
+  [data-testid="stSidebarCollapsedControl"],
+  [data-testid="collapsedControl"],
+  [data-testid="stExpandSidebarButton"],
+  [data-testid="stSidebarResizeHandle"],
+  [data-testid="stSidebarResizer"] { display: none !important; }
+  section[data-testid="stSidebar"] {
+    transform: none !important;
+    width: 320px !important;
+    min-width: 320px !important;
+    max-width: 320px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
