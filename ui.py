@@ -25,6 +25,7 @@ def render_header():
 def render_hero():
     st.markdown(
         '<div class="hero"><h2>Yuk, unggah Dokumen-mu!</h2>',
+        unsafe_allow_html=False
     )
 
 
