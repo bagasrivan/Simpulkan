@@ -8,6 +8,7 @@ import streamlit as st
 
 import config
 
+# Sembunyikan ikon tautan di samping judul
 
 def load_css():
     css = (Path(__file__).parent / "styles.css").read_text(encoding="utf-8")
@@ -23,7 +24,7 @@ def render_header():
 
 
 def render_hero():
-    st.text(
+    st.markdown(
         '<div class="hero"><h2>Yuk, unggah Dokumen-mu!</h2>',
         unsafe_allow_html=True,
     )
